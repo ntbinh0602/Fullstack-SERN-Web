@@ -1,0 +1,11 @@
+.login-background {
+    height: 100vh;
+    background: rgb(34,193,195);
+    background: linear-gradient(135deg, rgba(34,193,195,1) 0%,     rgb(64, 202, 138) 100%);
+
+    .login-container {
+        width: 400px;
+        margin: 0 auto;
+        border: 1px solid #000;
+    }
+}
