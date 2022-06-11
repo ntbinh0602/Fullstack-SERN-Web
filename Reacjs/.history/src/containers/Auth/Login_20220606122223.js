@@ -67,7 +67,7 @@ class Login extends Component {
                 />
                 <span>
                   onClick={() => this.handleShowhidePassword()}
-                  <i class="fas fa-eye"></i>
+                  <i className="fas fa-eye"></i>
                 </span>
               </div>
             </div>

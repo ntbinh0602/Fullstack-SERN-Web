@@ -54,7 +54,7 @@ class Login extends Component {
             <div className="col-12 form-group login-input">
               <lable>Password:</lable>
               <div>
-                <i class="far fa-eye"></i>
+                <i className="far fa-eye"></i>
               </div>
               <input
                 type="password"

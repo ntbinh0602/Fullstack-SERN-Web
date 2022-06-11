@@ -62,7 +62,7 @@ class Login extends Component {
                   onChange={(event) => this.handleOnchangePassword(event)}
                 />
                 <span>
-                  <i class="fas fa-eye"></i>
+                  <i className="fas fa-eye"></i>
                 </span>
               </div>
             </div>

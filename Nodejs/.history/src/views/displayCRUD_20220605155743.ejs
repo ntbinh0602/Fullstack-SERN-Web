@@ -38,8 +38,8 @@
     </style>
   </head>
   <body>
-    <div class="container">
-      <table class="table table-hover">
+    <div className="container">
+      <table className="table table-hover">
         <thead>
           <tr>
             <th>Email</th>
@@ -59,11 +59,11 @@
             <td>
               <a
                 href="/edit-crud?id=<%=dataTable[i].id%>"
-                class="button btn-edit"
+                className="button btn-edit"
                 type="submit"
                 >Edit</a
               >
-              <a class="button btn-delete" type="submit">Delete</a>
+              <a className="button btn-delete" type="submit">Delete</a>
             </td>
           </tr>
           <% } %>

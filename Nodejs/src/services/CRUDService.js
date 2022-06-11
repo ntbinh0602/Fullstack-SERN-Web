@@ -70,7 +70,14 @@ let updateUserData = (data) => {
         user.firstName = data.firstName;
         user.lastName = data.lastName;
         user.address = data.address;
-        await user.save();
+        await db.User.update(
+          {
+            firstName: user.firstName,
+            lastName: user.lastName,
+            address: user.address,
+          },
+          { where: { id: data.id } }
+        );
 
         let allUsers = await db.User.findAll();
         resolve(allUsers);
@@ -88,7 +95,7 @@ let deleteUserById = (userId) => {
     try {
       let user = await db.User.findOne({ where: { id: userId } });
       if (user) {
-        await user.destroy();
+        await db.User.destroy({ where: { id: userId } });
         resolve();
       } else {
         resolve();

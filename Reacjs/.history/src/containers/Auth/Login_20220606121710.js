@@ -61,8 +61,8 @@ class Login extends Component {
                   value={this.state.password}
                   onChange={(event) => this.handleOnchangePassword(event)}
                 />
-                <i class="fas fa-eye "></i>
-                <i class="fas fa-eye-slash"></i>
+                <i className="fas fa-eye "></i>
+                <i className="fas fa-eye-slash"></i>
               </div>
             </div>
             <div className="col-12">
