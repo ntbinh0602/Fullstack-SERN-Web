@@ -1,0 +1,11 @@
+.label-upload {
+    padding: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: rgb(80, 128, 80);
+    color :#fff;
+
+    &:hover {
+        opacity: 0.9;
+    }
+}
