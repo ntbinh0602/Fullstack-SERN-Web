@@ -50,6 +50,9 @@
     }
 }
 
+    .slick-disabled {
+        display: none !important;
+    }
 
 .section-share {
     height: 330px;
@@ -85,10 +88,10 @@
 
             .outstanding-box{
                 margin: 0 5px; 
-                border: 1px solid rgb(229, 233, 180);
+                border: 1px solid #f7971e;
                 padding: 10px 0;
             }
-
+            
             .handbook-box {
                 display: flex;
                 margin: 0 10px;
@@ -114,6 +117,7 @@
                 height: 120px;
                 width: 120px;
                 border-radius: 50%;
+                border: 1px solid #ccc;
             }
 
             span {

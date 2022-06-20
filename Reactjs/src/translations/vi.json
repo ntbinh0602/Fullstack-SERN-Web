@@ -54,7 +54,8 @@
         "position": "Chức danh",
         "role": "Vai trò",
         "image": "Ảnh đại diện",
-        "save": "Lưu người dùng",
+        "create": "Tạo người dùng",
+        "edit": "Lưu thay đổi",
         "upload-image": "Tải ảnh",
         "no-image": "Không có hình ảnh"
     },
@@ -64,5 +65,16 @@
         "password": "Mật khẩu:",
         "forgot-password": "Quên mật khẩu?",
         "or-login-with":"Hoặc đăng nhập với:"
+    },
+
+    "table" : {
+        "first-name":"Tên",
+        "last-name": "Họ",
+        "address": "Địa chỉ",
+        "actions": "Hành động"
+    },
+    "homepage" : {
+        "outstanding-doctor": "Bác sĩ nổi bật tuần qua",
+        "see-more": "Xem thêm"
     }
 }

@@ -14,7 +14,7 @@
     },
 
     "banner": {
-        "title1":"MEDICAL BACKGROUND",  
+        "title1":"MEDICAL PLATFORM",  
         "title2":"COMPREHENSIVE HEALTH CARE",
         "specialist-examination": "Specialist examination",
         "remote-examination": "Remote examination",
@@ -54,7 +54,8 @@
         "position": "Position",
         "role": "Role",
         "image": "Avatar",
-        "save": "Save user",
+        "create": "Create user",
+        "edit": "Save changes",
         "upload-image": "Upload",
         "no-image": "No image"
     },
@@ -64,5 +65,15 @@
         "password": "Password:",
         "forgot-password": "Forgot password?",
         "or-login-with":"Or login with:"
+    },
+    "table" : {
+        "first-name":"First name",
+        "last-name": "Last name",
+        "address": "Address",
+        "actions": "Actions"
+    },
+    "homepage" : {
+        "outstanding-doctor": "Last week's featured doctor",
+        "see-more": "See more"
     }
 }

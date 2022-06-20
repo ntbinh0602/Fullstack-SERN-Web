@@ -3,75 +3,71 @@ import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import Slider from "react-slick";
 import "../HomePage.scss";
-
+import { LANGUAGES } from "../../../utils";
+import * as actions from "../../../store/actions";
 import h1 from "../../../assets/outstanding-doctor/anh-vit.gif";
 
 class OutstandingDoctor extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      arrDoctors: [],
+    };
+  }
+  // check các sự thay đổi và gán giá trị lại cho biến
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.topDoctorsRedux !== this.props.topDoctorsRedux) {
+      this.setState({
+        arrDoctors: this.props.topDoctorsRedux,
+      });
+    }
+  }
+
+  componentDidMount() {
+    this.props.loadTopDoctors();
+  }
+
   render() {
+    let { language } = this.props;
+    console.log("check data top doctor:", this.props.topDoctorsRedux);
+    let arrDoctors = this.state.arrDoctors;
     return (
       <div className="section-share section-light">
         <div className="section-content">
           <div className="section-title">
-            <h4>Bác sĩ nổi bật tuần qua</h4>
-            <button>Xem thêm</button>
+            <h4>
+              <FormattedMessage id="homepage.outstanding-doctor" />
+            </h4>
+            <button>
+              <FormattedMessage id="homepage.see-more" />
+            </button>
           </div>
           <Slider {...this.props.settings}>
-            <div className="section-box-item">
-              <div className="outstanding-box">
-                <img src={h1} className="out-standing-doctor-img" />
-                <span>Bác sĩ, thạc sĩ Trần Thí Vi</span>
-                <span>Da liễu 1</span>
-              </div>
-            </div>
-            <div className="section-box-item">
-              <div className="outstanding-box">
-                <img src={h1} className="out-standing-doctor-img" />
-                <span>Bác sĩ, thạc sĩ Trần Thí Vi</span>
-                <span>Da liễu 1</span>
-              </div>
-            </div>
-            <div className="section-box-item">
-              <div className="outstanding-box">
-                <img src={h1} className="out-standing-doctor-img" />
-                <span>Bác sĩ, thạc sĩ Trần Thí Vi</span>
-                <span>Da liễu 1</span>
-              </div>
-            </div>
-            <div className="section-box-item">
-              <div className="outstanding-box">
-                <img src={h1} className="out-standing-doctor-img" />
-                <span>Bác sĩ, thạc sĩ Trần Thí Vi</span>
-                <span>Da liễu 1</span>
-              </div>
-            </div>
-            <div className="section-box-item">
-              <div className="outstanding-box">
-                <img src={h1} className="out-standing-doctor-img" />
-                <span>Bác sĩ, thạc sĩ Trần Thí Vi</span>
-                <span>Da liễu 1</span>
-              </div>
-            </div>
-            <div className="section-box-item">
-              <div className="outstanding-box">
-                <img src={h1} className="out-standing-doctor-img" />
-                <span>Bác sĩ, thạc sĩ Trần Thí Vi</span>
-                <span>Da liễu 1</span>
-              </div>
-            </div>
-            <div className="section-box-item">
-              <div className="outstanding-box">
-                <img src={h1} className="out-standing-doctor-img" />
-                <span>Bác sĩ, thạc sĩ Trần Thí Vi</span>
-                <span>Da liễu 1</span>
-              </div>
-            </div>
-            <div className="section-box-item">
-              <div className="outstanding-box">
-                <img src={h1} className="out-standing-doctor-img" />
-                <span>Bác sĩ, thạc sĩ Trần Thí Vi</span>
-                <span>Da liễu 1</span>
-              </div>
-            </div>
+            {arrDoctors &&
+              arrDoctors.length > 0 &&
+              arrDoctors.map((item, index) => {
+                let imageBase64 = "";
+                if (item.image) {
+                  imageBase64 = new Buffer(item.image, "base64").toString(
+                    "binary"
+                  );
+                }
+                let nameVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
+                let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
+
+                return (
+                  <div className="section-box-item" key={index}>
+                    <div className="outstanding-box">
+                      <img
+                        src={imageBase64}
+                        className="out-standing-doctor-img"
+                      />
+                      <span>{language === LANGUAGES.VI ? nameVi : nameEn}</span>
+                      <span>Khoa thần kinh</span>
+                    </div>
+                  </div>
+                );
+              })}
           </Slider>
         </div>
       </div>
@@ -82,12 +78,15 @@ class OutstandingDoctor extends Component {
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.user.isLoggedIn,
-    lang: state.app.language,
+    language: state.app.language,
+    topDoctorsRedux: state.admin.topDoctors,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    loadTopDoctors: () => dispatch(actions.fetchTopDoctor()),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OutstandingDoctor);
