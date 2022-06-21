@@ -60,21 +60,38 @@ let saveDetailInforDoctor = (inputData) => {
   return new Promise(async (resolve, reject) => {
     try {
       if (
-        // !inputData.id ||
+        !inputData.doctorId ||
         !inputData.contentHTML ||
-        !inputData.contentMarkdown
+        !inputData.contentMarkdown ||
+        !inputData.action
       ) {
         resolve({
           errCode: 1,
           errMessage: "Missing parameter",
         });
       } else {
-        await db.Markdown.create({
-          contentHTML: inputData.contentHTML,
-          contentMarkdown: inputData.contentMarkdown,
-          description: inputData.description,
-          doctorId: inputData.doctorId,
-        });
+        if (inputData.action === "CREATE") {
+          await db.Markdown.create({
+            contentHTML: inputData.contentHTML,
+            contentMarkdown: inputData.contentMarkdown,
+            description: inputData.description,
+            doctorId: inputData.doctorId,
+          });
+        } else if (inputData.action === "EDIT") {
+          let doctorMarkdown = await db.Markdown.findOne({
+            where: { doctorId: inputData.doctorId },
+          });
+          if (doctorMarkdown) {
+            await db.Markdown.update(
+              {
+                contentHTML: inputData.contentHTML,
+                contentMarkdown: inputData.contentMarkdown,
+                description: inputData.description,
+              },
+              { where: { doctorId: inputData.doctorId } }
+            );
+          }
+        }
         resolve({
           errCode: 0,
           message: "Save infor doctor succeed!",
@@ -100,7 +117,7 @@ let getDetailDoctorById = (inputId) => {
             id: inputId,
           },
           attributes: {
-            exclude: ["password", "image"],
+            exclude: ["password"],
           },
           include: [
             {
@@ -113,9 +130,14 @@ let getDetailDoctorById = (inputId) => {
               attributes: ["valueEn", "valueVi"],
             },
           ],
-          raw: true,
+          raw: false,
           nest: true,
         });
+        if (data && data.image) {
+          data.image = new Buffer(data.image, "base64").toString("binary");
+        }
+
+        if (!data) data = {};
         resolve({
           errCode: 0,
           data: data,

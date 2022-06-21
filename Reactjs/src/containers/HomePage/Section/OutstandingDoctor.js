@@ -5,7 +5,7 @@ import Slider from "react-slick";
 import "../HomePage.scss";
 import { LANGUAGES } from "../../../utils";
 import * as actions from "../../../store/actions";
-import h1 from "../../../assets/outstanding-doctor/anh-vit.gif";
+import { withRouter } from "react-router";
 
 class OutstandingDoctor extends Component {
   constructor(props) {
@@ -27,9 +27,12 @@ class OutstandingDoctor extends Component {
     this.props.loadTopDoctors();
   }
 
+  handleViewDetailDoctor = (doctor) => {
+    this.props.history.push(`/detail-doctor/${doctor.id}`);
+  };
+
   render() {
     let { language } = this.props;
-    console.log("check data top doctor:", this.props.topDoctorsRedux);
     let arrDoctors = this.state.arrDoctors;
     return (
       <div className="section-share section-light">
@@ -56,7 +59,13 @@ class OutstandingDoctor extends Component {
                 let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
 
                 return (
-                  <div className="section-box-item" key={index}>
+                  <div
+                    className="section-box-item"
+                    key={index}
+                    onClick={() => {
+                      this.handleViewDetailDoctor(item);
+                    }}
+                  >
                     <div className="outstanding-box">
                       <img
                         src={imageBase64}
@@ -89,4 +98,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutstandingDoctor);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(OutstandingDoctor)
+);

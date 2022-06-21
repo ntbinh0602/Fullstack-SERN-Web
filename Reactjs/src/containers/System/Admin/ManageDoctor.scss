@@ -22,6 +22,19 @@
         }
     }
 
+    .create-content-doctor {
+        background-color: #007bff;
+        color: #fff;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 3px;
+        outline: none;
+
+        &:hover {
+            opacity: 0.9;
+        }
+    }
+
     .more-infor {
         display: flex;
         gap: 30px;

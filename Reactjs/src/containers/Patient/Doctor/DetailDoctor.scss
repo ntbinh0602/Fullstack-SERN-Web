@@ -1,0 +1,55 @@
+.doctor-detail-container {
+    margin: 78px auto 0 auto;
+    border: 1px solid transparent;
+    height: 500px;
+    background-color: #f9f9f9;
+
+    .intro-doctor {
+        background-color: #fff;
+        .intro-doctor-box {
+        width: 1200px;
+        display: flex;
+        padding:30px 0 ;
+        margin: 0 auto;
+        align-items:center;
+        .content-left {
+            margin: 0 10px;
+            .img-doctor {
+                width: 140px;
+                height:140px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        }
+
+        .content-right {
+            display: flex;
+            flex-direction: column;
+            .up {
+                font-size: 20px;
+                font-weight: 600;
+            }
+
+            .down {
+                margin-top: 10px;
+                width: 80%;
+            }
+            
+        }
+        }
+    }
+
+    .detail-infor-doctor {
+        .detail-infor-doctor-box {
+            width: 1200px;
+            padding: 40px 10px;
+            margin: 0 auto;
+            img {
+                display: block;
+                width: 100%;
+                margin: 10px auto;
+            }
+        }
+        
+    }
+}
