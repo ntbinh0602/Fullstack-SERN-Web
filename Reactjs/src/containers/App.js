@@ -16,6 +16,7 @@ import Home from "../routes/Home";
 import Login from "./Auth/Login";
 import System from "../routes/System";
 import ConfirmModal from "../components/ConfirmModal";
+import Doctor from "../routes/Doctor";
 
 class App extends Component {
   handlePersistorState = () => {
@@ -57,6 +58,10 @@ class App extends Component {
                   <Route
                     path={path.SYSTEM}
                     component={userIsAuthenticated(System)}
+                  />
+                  <Route
+                    path={"/doctor/"}
+                    component={userIsAuthenticated(Doctor)}
                   />
                   <Route path={path.HOME_PAGE} component={HomePage} />
                   <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
