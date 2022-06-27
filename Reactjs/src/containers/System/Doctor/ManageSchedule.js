@@ -9,6 +9,7 @@ import DatePicker from "../../../components/Input/DatePicker";
 import moment from "moment";
 import { toast } from "react-toastify";
 import _ from "lodash";
+import { saveBulkScheduleDoctor } from "../../../services/userService";
 
 class ManageSchedule extends Component {
   constructor(props) {
@@ -96,7 +97,7 @@ class ManageSchedule extends Component {
     }
   };
 
-  handleSaveSchedule = () => {
+  handleSaveSchedule = async () => {
     let { rangeTime, selectedDoctor, curentDate } = this.state;
     let result = [];
 
@@ -110,15 +111,17 @@ class ManageSchedule extends Component {
       return;
     }
 
-    let formatedDate = moment(curentDate).format(dateFormat.SEND_TO_SERVER);
+    // let formatedDate = moment(curentDate).format(dateFormat.SEND_TO_SERVER);
+    let formatedDate = new Date(curentDate).getTime();
+
     if (rangeTime && rangeTime.length > 0) {
       let selectedTime = rangeTime.filter((item) => item.isSelected === true);
       if (selectedTime && selectedTime.length > 0) {
         selectedTime.map((schedule) => {
-          let object = [];
+          let object = {};
           object.doctorId = selectedDoctor.value;
           object.date = formatedDate;
-          object.time = schedule.keyMap;
+          object.timeType = schedule.keyMap;
           result.push(object);
         });
       } else {
@@ -126,13 +129,16 @@ class ManageSchedule extends Component {
         return;
       }
     }
-    console.log("check result:", result);
+    let res = await saveBulkScheduleDoctor({
+      arrSchedule: result,
+      doctorId: selectedDoctor.value,
+      date: formatedDate,
+    });
   };
 
   render() {
     let { rangeTime } = this.state;
     let { language } = this.props;
-    console.log("check:", rangeTime);
     return (
       <>
         <div className="manage-schedule-container">

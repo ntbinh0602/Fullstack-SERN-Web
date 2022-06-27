@@ -41,6 +41,7 @@
 
     .detail-infor-doctor {
         border-top:1px solid #ccc;
+        background-color: #f9f9f9;
         border-bottom:1px solid #ccc;
         .detail-infor-doctor-box {
             width: 1200px;
@@ -54,4 +55,22 @@
         }
         
     }
+
+    .schedule-doctor {
+        background-color: #fff;
+        .schedule-doctor-box {
+            display: flex;
+            height: 300px;
+            width: 1200px;
+            margin: 0 auto;
+            border: 1px solid #302953;
+            .content-left {
+                width: 60%;
+            }
+    
+            .content-right {
+                width: 40%;
+            }
+        }
+        }
 }
