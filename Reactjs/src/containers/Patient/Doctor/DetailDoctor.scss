@@ -6,72 +6,80 @@
 
     .intro-doctor {
         background-color: #fff;
+
         .intro-doctor-box {
-        width: 1200px;
-        display: flex;
-        padding:30px 0 ;
-        margin: 0 auto;
-        align-items:center;
-        .content-left {
-            margin: 0 10px;
-            .img-doctor {
-                width: 140px;
-                height:140px;
-                border-radius: 50%;
-                object-fit: cover;
-            }
-        }
-
-        .content-right {
+            width: 1200px;
             display: flex;
-            flex-direction: column;
-            .up {
-                font-size: 20px;
-                font-weight: 600;
+            padding: 30px 0;
+            margin: 0 auto;
+            align-items: center;
+
+            .content-left {
+                margin: 0 10px;
+
+                .img-doctor {
+                    width: 140px;
+                    height: 140px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
             }
 
-            .down {
-                margin-top: 10px;
-                width: 80%;
+            .content-right {
+                display: flex;
+                flex-direction: column;
+
+                .up {
+                    font-size: 20px;
+                    font-weight: 600;
+                }
+
+                .down {
+                    margin-top: 10px;
+                    width: 80%;
+                }
+
             }
-            
-        }
         }
     }
 
     .detail-infor-doctor {
-        border-top:1px solid #ccc;
+        border-top: 1px solid #ccc;
         background-color: #f9f9f9;
-        border-bottom:1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+
         .detail-infor-doctor-box {
             width: 1200px;
             padding: 40px 10px;
             margin: 0 auto;
+
             img {
                 display: block;
                 width: 70%;
                 margin: 20px auto;
             }
         }
-        
+
     }
 
     .schedule-doctor {
         background-color: #fff;
+
         .schedule-doctor-box {
             display: flex;
-            height: 250px;
             width: 1200px;
+            min-height: 200px;
             margin: 0 auto;
-            padding: 0 10px;
+            padding: 10px 10px 20px 10px;
+
             .content-left {
                 width: 60%;
                 border-right: 1px solid #ccc;
             }
-    
+
             .content-right {
                 width: 40%;
             }
         }
-        }
+    }
 }
