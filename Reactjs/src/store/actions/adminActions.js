@@ -314,3 +314,43 @@ export const fetchAllScheduleTime = () => {
     }
   };
 };
+
+
+// Fetch Required Doctor Infor
+export const getRequiredDoctorInfor = () => {
+  return async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_START,
+      });
+      let resPrice = await getAllCodeService("PRICE");
+      let resPayment = await getAllCodeService("PAYMENT");
+      let resProvince = await getAllCodeService("PROVINCE");
+      if (resPrice && resPrice.errCode === 0 &&
+        resPayment && resPayment.errCode === 0 &&
+        resProvince && resProvince.errCode === 0
+      ) {
+        let data = {
+          resPrice: resPrice.data,
+          resPayment: resPayment.data,
+          resProvince: resProvince.data
+        }
+        dispatch(fetchALLRequiredDoctorInforSuccess(data));
+      } else {
+        dispatch(fetchALLRequiredDoctorInforFail());
+      }
+    } catch (e) {
+      dispatch(fetchALLRequiredDoctorInforFail());
+      console.log("fetchALLRequiredDoctorInfor error", e);
+    }
+  };
+};
+
+export const fetchALLRequiredDoctorInforSuccess = (allRequiredData) => ({
+  type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_SUCCESS,
+  data: allRequiredData,
+});
+
+export const fetchALLRequiredDoctorInforFail = () => ({
+  type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_FAIL,
+});
