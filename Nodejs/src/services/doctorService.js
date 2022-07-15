@@ -67,13 +67,20 @@ let saveDetailInforDoctor = (inputData) => {
         !inputData.doctorId ||
         !inputData.contentHTML ||
         !inputData.contentMarkdown ||
-        !inputData.action
+        !inputData.action ||
+        !inputData.selectedPrice ||
+        !inputData.selectedPayment ||
+        !inputData.selectedProvince ||
+        !inputData.nameClinic ||
+        !inputData.addressClinic ||
+        !inputData.note
       ) {
         resolve({
           errCode: 1,
           errMessage: "Missing parameter",
         });
       } else {
+        // upsert to Markdown
         if (inputData.action === "CREATE") {
           await db.Markdown.create({
             contentHTML: inputData.contentHTML,
@@ -96,6 +103,51 @@ let saveDetailInforDoctor = (inputData) => {
             );
           }
         }
+
+        // upsert to Doctor_Infor table
+        let doctorInfor = await db.Doctor_Infor.findOne({
+          where: {
+            doctorId: inputData.doctorId,
+          },
+          raw: false
+        })
+        if (doctorInfor) {
+          // update
+          // await db.Doctor_Infor.update(
+          //   {
+          //     priceId: inputData.selectedPrice,
+          //     provinceId: inputData.selectedProvince,
+          //     paymentId: inputData.selectedPayment,
+          //     nameClinic: inputData.nameClinic,
+          //     addressClinic: inputData.addressClinic,
+          //     note: inputData.note,
+          //   },
+          //   { where: { doctorId: inputData.doctorId } }
+          // );
+
+
+
+          doctorInfor.priceId = inputData.selectedPrice;
+          doctorInfor.provinceId = inputData.selectedProvince;
+          doctorInfor.paymentId = inputData.selectedPayment;
+          doctorInfor.nameClinic = inputData.nameClinic;
+          doctorInfor.addressClinic = inputData.addressClinic;
+          doctorInfor.note = inputData.note;
+
+          await doctorInfor.save()
+
+        } else {
+          await db.Doctor_Infor.create({
+            doctorId: inputData.doctorId,
+            priceId: inputData.selectedPrice,
+            provinceId: inputData.selectedProvince,
+            paymentId: inputData.selectedPayment,
+            nameClinic: inputData.nameClinic,
+            addressClinic: inputData.addressClinic,
+            note: inputData.note,
+          });
+        }
+
         resolve({
           errCode: 0,
           message: "Save infor doctor succeed!",
@@ -132,6 +184,29 @@ let getDetailDoctorById = (inputId) => {
               model: db.Allcode,
               as: "positionData",
               attributes: ["valueEn", "valueVi"],
+            },
+            {
+              model: db.Doctor_Infor,
+              attributes: {
+                exclude: ["id", "doctorId"],
+              },
+              include: [
+                {
+                  model: db.Allcode,
+                  as: "priceTypeData",
+                  attributes: ["valueEn", "valueVi"],
+                },
+                {
+                  model: db.Allcode,
+                  as: "provinceTypeData",
+                  attributes: ["valueEn", "valueVi"],
+                },
+                {
+                  model: db.Allcode,
+                  as: "paymentTypeData",
+                  attributes: ["valueEn", "valueVi"],
+                },
+              ]
             },
           ],
           raw: false,
@@ -233,6 +308,57 @@ let getScheduleByDate = (doctorId, date) => {
   });
 };
 
+let getExtraInforDoctorById = (idInput) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!idInput) {
+        resolve({
+          errCode: 1,
+          errMessage: "Missing required parameters"
+        })
+      } else {
+        let data = await db.Doctor_Infor.findOne({
+          where: {
+            doctorId: idInput
+          },
+          attributes: {
+            exclude: ["id", "doctorId"],
+          },
+          include: [
+            {
+              model: db.Allcode,
+              as: "priceTypeData",
+              attributes: ["valueEn", "valueVi"],
+            },
+            {
+              model: db.Allcode,
+              as: "provinceTypeData",
+              attributes: ["valueEn", "valueVi"],
+            },
+            {
+              model: db.Allcode,
+              as: "paymentTypeData",
+              attributes: ["valueEn", "valueVi"],
+            },
+          ],
+          raw: false,
+          nest: true,
+        })
+
+        if (!data) {
+          data = {}
+        }
+        resolve({
+          errCode: 0,
+          data: data
+        })
+      }
+    } catch (e) {
+      reject(e)
+    }
+  })
+}
+
 module.exports = {
   getTopDoctorHome: getTopDoctorHome,
   getAllDoctor: getAllDoctor,
@@ -240,4 +366,5 @@ module.exports = {
   getDetailDoctorById: getDetailDoctorById,
   bulkCreateSchedule: bulkCreateSchedule,
   getScheduleByDate: getScheduleByDate,
+  getExtraInforDoctorById: getExtraInforDoctorById,
 };
