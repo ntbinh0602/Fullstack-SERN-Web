@@ -1,0 +1,40 @@
+.intro-doctor {
+    background-color: #fff;
+
+    .intro-doctor-box {
+        display: flex;
+        margin: 0 auto 10px;
+        align-items: center;
+
+        .content-left {
+            margin: 0 10px;
+
+            .img-doctor {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                object-fit: cover;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+        }
+
+        .content-right {
+            display: flex;
+            flex-direction: column;
+
+
+            .up {
+                font-size: 14px;
+                font-weight: 600;
+            }
+
+            .down {
+                font-size: 13px;
+                width: 100%;
+            }
+
+        }
+    }
+}

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./DoctorSchedule.scss";
 import { FormattedMessage } from "react-intl";
 
 import localization from "moment/locale/vi";
 import { LANGUAGES } from "../../../utils";
 import BookingModal from "./Modal/BookingModal";
+import "./DoctorSchedule.scss";
 import moment from "moment";
 import { getScheduleDoctorByDate } from "../../../services/userService";
 
@@ -150,7 +150,7 @@ class DoctorSchedule extends Component {
                     }
                   </div>
                   <div className="booking-free">
-                    <span><FormattedMessage id="patient.detail-doctor.choose" /><i class="far fa-hand-pointer"></i><FormattedMessage id="patient.detail-doctor.and-book" /></span>
+                    <span><FormattedMessage id="patient.detail-doctor.choose" /><i className="far fa-hand-pointer"></i><FormattedMessage id="patient.detail-doctor.and-book" /></span>
                   </div>
 
                 </>
@@ -165,7 +165,7 @@ class DoctorSchedule extends Component {
         <BookingModal
           isOpenModal={isOpenModalBooking}
           closeBookingModal={this.closeBookingModal}
-          datatime={dataScheduleTimeModal}
+          dataTime={dataScheduleTimeModal}
 
         />
       </>
