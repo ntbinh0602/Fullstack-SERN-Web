@@ -3,51 +3,46 @@ import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import Slider from "react-slick";
 import "../HomePage.scss";
-
-import h1 from "../../../assets/specialty/khoa-co-xuong-khop.jpg";
+import { getAllSpecialty } from "../../../services/userService";
 
 class Specialty extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      dataSpecialty: []
+    }
+  }
+
+  async componentDidMount() {
+    let res = await getAllSpecialty();
+    console.log('bb check res:', res)
+    if (res && res.errCode === 0) {
+      this.setState({
+        dataSpecialty: res.data ? res.data : []
+      })
+    }
+  }
+
   render() {
+    let { dataSpecialty } = this.state
     return (
       <div className="section-share section-light">
         <div className="section-content">
           <div className="section-title">
-            <h4>Chuyên khoa phổ biến</h4>
-            <button>Xem thêm</button>
+            <h4><FormattedMessage id="homepage.specialty-popular" /></h4>
+            <button><FormattedMessage id="homepage.see-more" /></button>
           </div>
           <Slider {...this.props.settings}>
-            <div className="section-box-item">
-              <img src={h1} />
-              <span>Cơ xương khớp 1</span>
-            </div>
-            <div className="section-box-item">
-              <img src={h1} />
-              <span>Cơ xương khớp 2</span>
-            </div>
-            <div className="section-box-item">
-              <img src={h1} />
-              <span>Cơ xương khớp 3</span>
-            </div>
-            <div className="section-box-item">
-              <img src={h1} />
-              <span>Cơ xương khớp 4</span>
-            </div>
-            <div className="section-box-item">
-              <img src={h1} />
-              <span>Cơ xương khớp 5</span>
-            </div>
-            <div className="section-box-item">
-              <img src={h1} />
-              <span>Cơ xương khớp 6</span>
-            </div>
-            <div className="section-box-item">
-              <img src={h1} />
-              <span>Cơ xương khớp 7</span>
-            </div>
-            <div className="section-box-item">
-              <img src={h1} />
-              <span>Cơ xương khớp 8</span>
-            </div>
+            {dataSpecialty && dataSpecialty.length > 0 &&
+              dataSpecialty.map((item, index) => {
+                return (
+                  <div className="section-box-item" key={index}>
+                    <img src={item.image} />
+                    <span>{item.name}</span>
+                  </div>
+                )
+              })}
           </Slider>
         </div>
       </div>
