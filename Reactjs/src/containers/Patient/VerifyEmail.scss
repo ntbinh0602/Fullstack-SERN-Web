@@ -1,0 +1,89 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+
+    .box-verify {
+        width: 400px;
+        height: 200px;
+        border-radius: 5px;
+        box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+        padding: 10px;
+        background-color: #fffdec;
+
+        .loading-data {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .confirm-appointment {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .sp1 {
+                i {
+                    margin-top: 20px;
+                    font-size: 30px;
+                    background: linear-gradient(90deg, rgba(101, 207, 124, 1) 8%, rgba(121, 173, 118, 1) 41%, rgba(4, 91, 16, 1) 100%);
+                    border-radius: 50%;
+                    color: #fff
+                }
+            }
+
+            .sp2 {
+
+                margin-top: 15px;
+                font-size: 20px;
+                font-weight: 600;
+
+                i {
+                    font-size: 18px;
+                    color: rgb(98, 181, 117)
+                }
+            }
+
+            .sp3 {
+                margin-top: 15px;
+                font-size: 16px;
+            }
+        }
+
+        .no-appointment {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .sp1 {
+                i {
+                    margin-top: 20px;
+                    font-size: 30px;
+                    background: linear-gradient(90deg, rgba(171, 127, 161, 1) 0%, rgba(207, 101, 146, 1) 49%, rgba(129, 6, 85, 1) 100%);
+                    border-radius: 50%;
+                    color: #fff
+                }
+            }
+
+            .sp2 {
+
+                margin-top: 15px;
+                font-size: 20px;
+                font-weight: 600;
+
+                i {
+                    font-size: 18px;
+                    color: rgb(181, 98, 98)
+                }
+            }
+
+            .sp3 {
+                margin-top: 15px;
+                font-size: 16px;
+            }
+        }
+    }
+}
