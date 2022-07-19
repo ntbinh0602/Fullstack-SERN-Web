@@ -11,7 +11,7 @@
     }
 
     .save-content-doctor {
-        background-color: #FFC107 ;
+        background-color: #FFC107;
         padding: 5px 10px;
         border: none;
         border-radius: 3px;
@@ -40,11 +40,12 @@
         gap: 30px;
 
         .content-left {
-            flex: 4
+            width: 33%;
         }
 
         .content-right {
-            flex: 6
+            width: 67%;
+
         }
     }
 

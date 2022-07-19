@@ -115,6 +115,10 @@
         "manage-doctor": {
             "title": "Create more information doctors",
             "select-doctor": "Select doctor",
+            "select-specialty": "Select specialty",
+            "select-clinic": "Select clinic",
+            "clinic": "Clinic",
+            "specialty": "Specialty",
             "introduction": "Introduction information",
             "create": "Create information",
             "save": "Save Information",
