@@ -54,7 +54,7 @@ class VerifyEmail extends Component {
             <>
                 <HomeHeader />
                 {statusVerify === false ?
-                    <div className="container">
+                    <div className="verify-container">
                         <div className="box-verify">
                             <div className="loading-data">
                                 <span>Loading data...</span>
@@ -62,7 +62,7 @@ class VerifyEmail extends Component {
                         </div>
                     </div>
                     :
-                    <div className="container">
+                    <div className="verify-container">
                         <div className="box-verify ">
                             {errCode === 0 ?
                                 <div className="confirm-appointment">
