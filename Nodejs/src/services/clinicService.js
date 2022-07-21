@@ -1,9 +1,11 @@
+const { reject } = require("lodash");
 const db = require("../models");
 
-let createSpecialty = (data) => {
+let createClinic = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            if (!data.name
+            if (!data.name ||
+                !data.address
                 || !data.imageBase64
                 || !data.descriptionHTML
                 || !data.descriptionMarkdown) {
@@ -12,8 +14,9 @@ let createSpecialty = (data) => {
                     errMessage: "Missing required parameters",
                 });
             } else {
-                await db.Specialty.create({
+                await db.Clinic.create({
                     name: data.name,
+                    address: data.address,
                     image: data.imageBase64,
                     descriptionHTML: data.descriptionHTML,
                     descriptionMarkdown: data.descriptionMarkdown
@@ -31,10 +34,10 @@ let createSpecialty = (data) => {
     })
 }
 
-let getAllSpecialty = () => {
-    try {
-        return new Promise(async (resolve, reject) => {
-            let data = await db.Specialty.findAll()
+let getAllClinic = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let data = await db.Clinic.findAll()
 
             if (data && data.length > 0) {
                 data.map(item => {
@@ -47,48 +50,37 @@ let getAllSpecialty = () => {
                 errCode: 0,
                 data
             })
-        })
-
-    } catch (e) {
-        reject(e)
-    }
+            
+        } catch (e) {
+            reject(e)
+        }
+    })
 }
 
-let getDetailSpecialtyById = (inputId, location) => {
+let getDetailClinicById = (inputId) => {
     try {
         return new Promise(async (resolve, reject) => {
-        if (!inputId || !location) {
+        if (!inputId) {
             resolve({
                 errCode: 1,
                 errMessage: "Missing required parameters",
             });
         } else {
-               let data = await db.Specialty.findOne({
+               let data = await db.Clinic.findOne({
                 where: {
                     id: inputId
                 },
-                attributes: ['descriptionHTML','descriptionMarkdown']
+                attributes: ['image','name','address','descriptionHTML','descriptionMarkdown']
             })
             if(data) {
-                let doctorSpecialty = [];
-                if(location === 'ALL'){
-                    doctorSpecialty = await db.Doctor_Infor.findAll({
+                let doctorClinic = [];
+                    doctorClinic = await db.Doctor_Infor.findAll({
                        where: {
-                           specialtyId: inputId
+                           clinicId: inputId
                        },
                    attributes: ['doctorId','provinceId']
                    })
-                }else {
-                    //find by location
-                    doctorSpecialty = await db.Doctor_Infor.findAll({
-                        where: {
-                            specialtyId: inputId,
-                            provinceId: location
-                        },
-                    attributes: ['doctorId','provinceId']
-                    })
-                }
-                data.doctorSpecialty = doctorSpecialty
+                data.doctorClinic = doctorClinic
             }else{
                 data = {}
             }
@@ -108,9 +100,8 @@ let getDetailSpecialtyById = (inputId, location) => {
 }
 
 
-
 module.exports = {
-    createSpecialty: createSpecialty,
-    getAllSpecialty: getAllSpecialty,
-    getDetailSpecialtyById:getDetailSpecialtyById
+    createClinic: createClinic,
+    getAllClinic: getAllClinic,
+    getDetailClinicById: getDetailClinicById
 }

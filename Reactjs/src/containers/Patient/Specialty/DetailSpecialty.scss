@@ -2,13 +2,49 @@
     margin-top: 78px;
     background-color: #eeeeee;
     padding-bottom: 30px;
+    min-height: calc(100vh - 78px) ;
     .description-specialty{
-        height: 200px;
         background-color: #fff;
         display: flex;
+        padding: 20px 0;
         .description-specialty-content {
             width: 1200px;
             margin: 0 auto;
+            h3 {
+                font-size: 18px;
+            }
+
+            .clinic-name-aha {
+                font-size: 18px;
+                font-weight: 600;
+                margin-bottom: 10px
+            }
+
+            .clinic-img-aha {
+                width: 100%;
+                height: 300px;
+
+                img {
+                    width: 300px;
+                    height: 200px;
+                }
+            }
+        }
+    }
+    .search-sp-doctor {
+        display: flex;
+        width: 1200px;
+        margin: 10px auto 0;
+
+        select {
+            width: 140px;
+            height: 40px;
+            outline: none;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 0 10px 0 5px;
+
         }
     }
     .each-doctor {
@@ -17,7 +53,7 @@
         border-radius: 7px;
         overflow: hidden;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        margin: 30px auto 0;
+        margin: 10px auto 0;
         background-color: #fff;
         min-height: 200px;
 

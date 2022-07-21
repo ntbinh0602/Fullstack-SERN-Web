@@ -40,11 +40,11 @@ export const adminMenu = [
   },
   {
     //Quản lý phòng khám
-    name: "menu.admin.handbook",
+    name: "menu.admin.clinic",
     menus: [
       {
-        name: "menu.admin.manage-handbook",
-        link: "/system/handbook-manage",
+        name: "menu.admin.manage-clinic",
+        link: "/system/clinic-manage",
       },
     ],
   },

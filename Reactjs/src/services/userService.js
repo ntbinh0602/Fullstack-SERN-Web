@@ -94,6 +94,31 @@ const getAllSpecialty = () => {
   );
 };
 
+const getDetailSpecialtyById = (data) => {
+  return axios.get(
+    `/api/get-detail-specialty-by-id?id=${data.id}&location=${data.location}`
+  );
+}
+
+const getDetailClinicById = (data) => {
+  return axios.get(
+    `/api/get-detail-clinic-by-id?id=${data.id}`
+  );
+}
+
+const createNewClinic = (data) => {
+  return axios.post(
+    `/api/create-new-clinic`,data
+  );
+}
+
+const getAllClinic = () => {
+  return axios.get(
+    `/api/get-clinic`
+  );
+};
+
+
 export {
   handleLoginApi,
   getAllUsers,
@@ -113,4 +138,8 @@ export {
   postVerifyBookAppointment,
   createNewSpecialty,
   getAllSpecialty,
+  getDetailSpecialtyById,
+  createNewClinic,
+  getAllClinic,
+  getDetailClinicById
 };
