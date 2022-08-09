@@ -185,3 +185,82 @@
         }
     }
 }
+
+.section-auto-size {
+    height: 100%;
+}
+
+.section-contact-content {
+    padding: 25px 0;
+    display: flex;
+    .content-left {
+        flex: 1;
+
+        margin-left: 15px;
+        .contact-logo {
+            background: url("../../assets/images/myimage-removebg.png") center center no-repeat;
+            height: 78px;
+            width: 160px;
+            cursor: pointer;
+            margin-top: -15px;
+        }
+
+        .address-policy {
+            line-height: 2;
+            .address-policy-company {
+                font-size: 16px;
+                font-weight: 600;
+
+            }
+
+            .address {
+                i {
+                    margin-right: 10px;
+                }
+            }
+
+            .policy {
+                i {
+                    margin-right: 5px;
+                }
+            }
+        }
+        .verify {
+            margin-top: 20px;
+        }
+    }
+
+    .content-right {
+        flex: 1;
+        display: flex;
+        .content-right-list {
+            flex: 1;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            li {
+                font-size: 14px;
+                cursor: pointer;
+                color: #45c3d2;
+            }
+        }
+
+        .content-right-address {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            .content-right-address-item {
+                :first-child {
+                    font-size: 14px;
+                    font-weight: 600;
+                }
+
+                :last-child {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
