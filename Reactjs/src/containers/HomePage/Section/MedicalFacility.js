@@ -2,35 +2,34 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "../HomePage.scss";
 import Slider from "react-slick";
-import {getAllClinic} from "../../../services/userService"
-import {withRouter} from 'react-router'
+import { getAllClinic } from "../../../services/userService";
+import { withRouter } from "react-router";
 
 class MedicalFacility extends Component {
-
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      dataClinics: []
-    }
+      dataClinics: [],
+    };
   }
 
   async componentDidMount() {
     let res = await getAllClinic();
-    if(res && res.errCode === 0) {
+    if (res && res.errCode === 0) {
       this.setState({
-        dataClinics: res.data ? res.data: []
-      })
+        dataClinics: res.data ? res.data : [],
+      });
     }
   }
 
   handleViewDetailClinic = (clinic) => {
-    if(this.props.history) {
-      this.props.history.push(`/detail-clinic/${clinic.id}`)
+    if (this.props.history) {
+      this.props.history.push(`/detail-clinic/${clinic.id}`);
     }
-  }
+  };
 
   render() {
-    let {dataClinics} = this.state
+    let { dataClinics } = this.state;
     return (
       <div className="section-share section-dark">
         <div className="section-content">
@@ -39,18 +38,20 @@ class MedicalFacility extends Component {
             <button>Xem thêm</button>
           </div>
           <Slider {...this.props.settings}>
-            {dataClinics && dataClinics.length > 0 && 
-              dataClinics.map((item,index) => {
+            {dataClinics &&
+              dataClinics.length > 0 &&
+              dataClinics.map((item, index) => {
                 return (
-                  <div className="section-box-item" key={index}
-                    onClick = {() => this.handleViewDetailClinic(item)}
+                  <div
+                    className="section-box-item"
+                    key={index}
+                    onClick={() => this.handleViewDetailClinic(item)}
                   >
                     <img src={item.image} />
                     <span>{item.name}</span>
                   </div>
-                )
-              })
-            }
+                );
+              })}
           </Slider>
         </div>
       </div>
@@ -68,4 +69,6 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MedicalFacility));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(MedicalFacility)
+);

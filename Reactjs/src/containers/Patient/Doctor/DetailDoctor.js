@@ -6,6 +6,8 @@ import { LANGUAGES } from "../../../utils";
 import { getDetailInforDoctor } from "../../../services/userService";
 import DoctorExtraInfor from "./DoctorExtraInfor";
 import DoctorSchedule from "./DoctorSchedule";
+import Comment from "../SocialPlugin/Comment";
+import LikeAndShare from "../SocialPlugin/LikeAndShare";
 
 class DetailDoctor extends Component {
   constructor(props) {
@@ -16,7 +18,7 @@ class DetailDoctor extends Component {
     };
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) { }
+  componentDidUpdate(prevProps, prevState, snapshot) {}
 
   async componentDidMount() {
     if (
@@ -26,8 +28,8 @@ class DetailDoctor extends Component {
     ) {
       let id = this.props.match.params.id;
       this.setState({
-        currentDoctorId: id
-      })
+        currentDoctorId: id,
+      });
       let res = await getDetailInforDoctor(id);
       if (res && res.errCode === 0) {
         this.setState({
@@ -46,6 +48,11 @@ class DetailDoctor extends Component {
       nameVi = `${detailDoctor.positionData.valueVi}, ${detailDoctor.lastName} ${detailDoctor.firstName}`;
       nameEn = `${detailDoctor.positionData.valueEn}, ${detailDoctor.firstName} ${detailDoctor.lastName}`;
     }
+
+    let currentURL =
+      +process.env.REACT_APP_IS_LOCALHOST === 1
+        ? "https://www.bilibili.tv/vi/play/1050808?bstar_from=bstar-web.anime-tab.for-you.all"
+        : window.location.href;
 
     return (
       <>
@@ -72,6 +79,9 @@ class DetailDoctor extends Component {
                       <span>{detailDoctor.Markdown.description}</span>
                     )}
                 </div>
+                <div className="plugin_facebook">
+                  <LikeAndShare dataHref={currentURL} />
+                </div>
               </div>
             </div>
           </div>
@@ -79,16 +89,12 @@ class DetailDoctor extends Component {
             <div className="schedule-doctor-box">
               <div className="content-left">
                 <DoctorSchedule
-                  doctorIdFromParent={
-                    this.state.currentDoctorId
-                  }
+                  doctorIdFromParent={this.state.currentDoctorId}
                 />
               </div>
               <div className="content-right">
                 <DoctorExtraInfor
-                  doctorIdFromParent={
-                    this.state.currentDoctorId
-                  }
+                  doctorIdFromParent={this.state.currentDoctorId}
                 />
               </div>
             </div>
@@ -106,7 +112,9 @@ class DetailDoctor extends Component {
                 )}
             </div>
           </div>
-          <div className="comment-doctor"></div>
+          <div className="comment-doctor">
+            <Comment dataHref={currentURL} width={"100%"} />
+          </div>
         </div>
       </>
     );

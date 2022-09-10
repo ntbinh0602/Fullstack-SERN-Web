@@ -15,7 +15,7 @@
             align-items: center;
 
             .content-left {
-                margin: 0 10px;
+                margin: 0 30px 0 10px;
 
                 .img-doctor {
                     width: 140px;
@@ -41,6 +41,10 @@
                     margin-top: 10px;
                     width: 80%;
                     font-size: 14px;
+                }
+
+                .plugin_facebook {
+                    margin-top: 10px;
                 }
 
             }
@@ -84,5 +88,10 @@
                 width: 40%;
             }
         }
+    }
+
+    .comment-doctor {
+        width: 1200px;
+        margin: 0 auto;
     }
 }
