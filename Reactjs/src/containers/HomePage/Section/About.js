@@ -10,7 +10,7 @@ class About extends Component {
       <div className="section-share section-light section-large-size">
         <div className="section-content">
           <div className="section-title">
-            <h4>Truyền thông nói gì về BookingCare Clone</h4>
+            <h4><FormattedMessage id="homepage.bkc"/></h4>
           </div>
           <div className="section-about-content">
             <div className="section-about-content-left">
@@ -26,10 +26,7 @@ class About extends Component {
             </div>
             <div className="section-about-content-right">
               <p>
-                "Nếu bạn từng hoặc đang trải qua giai đoạn có rất nhiều nhiệt
-                huyết khi bắt đầu một hoạt động nào đó, nhưng thường không thể
-                tìm được động lực để duy trì mà lại không rõ nguyên nhân, thì có
-                thể bạn đang NỖ LỰC ẢO đó."
+                "<FormattedMessage id="homepage.ct"/>"
               </p>
             </div>
           </div>

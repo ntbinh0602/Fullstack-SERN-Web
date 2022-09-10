@@ -9,6 +9,7 @@ import OutstandingDoctor from "./Section/OutstandingDoctor";
 import Handbook from "./Section/Handbook";
 import About from "./Section/About";
 import HomeFooter from "./Section/HomeFooter";
+import Contact from "./Section/Contact";
 
 class HomePage extends Component {
   handleAfterChange = (event, slick, curentSlide) => {};
@@ -28,6 +29,7 @@ class HomePage extends Component {
         <OutstandingDoctor settings={settings} />
         <Handbook />
         <About />
+        <Contact />
         <HomeFooter />
       </div>
     );

@@ -76,7 +76,12 @@
     "homepage": {
         "outstanding-doctor": "Bác sĩ nổi bật tuần qua",
         "see-more": "Xem thêm",
-        "specialty-popular": "Chuyên khoa phổ biến"
+        "specialty-popular": "Chuyên khoa phổ biến",
+        "outstanding-facility": "Cơ sở y tế nổi bật",
+        "handbook": "Cẩm nang",
+        "all-posts": "Tất cả bài viết",
+        "bkc" : "Truyền thông nói gì về Bookingcare Clone",
+        "ct": "Nếu bạn từng hoặc đang trải qua giai đoạn có rất nhiều nhiệt huyết khi bắt đầu một hoạt động nào đó, nhưng thường không thể tìm được động lực để duy trì mà lại không rõ nguyên nhân, thì có thể bạn đang NỖ LỰC ẢO đó."
     },
     "manage-schedule": {
         "title": "Quản lý kế hoạch khám bệnh của bác sĩ",

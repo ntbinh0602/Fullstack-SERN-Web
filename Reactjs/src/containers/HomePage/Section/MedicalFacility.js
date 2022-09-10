@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "../HomePage.scss";
+import { FormattedMessage } from "react-intl";
 import Slider from "react-slick";
 import { getAllClinic } from "../../../services/userService";
 import { withRouter } from "react-router";
@@ -34,8 +35,8 @@ class MedicalFacility extends Component {
       <div className="section-share section-dark">
         <div className="section-content">
           <div className="section-title">
-            <h4>Cơ sở y tế nổi bật</h4>
-            <button>Xem thêm</button>
+            <h4><FormattedMessage id="homepage.outstanding-facility"/></h4>
+            <button><FormattedMessage id="homepage.see-more"/></button>
           </div>
           <Slider {...this.props.settings}>
             {dataClinics &&
